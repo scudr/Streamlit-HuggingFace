@@ -1,0 +1,7 @@
+streamlit
+transformers>=4.22.1
+torch
+Pillow
+requests
+diffusers
+accelerate
