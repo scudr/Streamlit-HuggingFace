@@ -5,6 +5,7 @@ from PIL import Image
 import requests
 from io import BytesIO
 
+
 def load_image_gen_model():
     model_name = "stabilityai/stable-diffusion-2-1"
     
