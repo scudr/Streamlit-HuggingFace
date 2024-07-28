@@ -34,6 +34,7 @@ def load_image_gen_model():
         safety_checker=safety_checker,  # Explicitly set safety_checker to None
         feature_extractor=feature_extractor
     )
+
 # Función para cargar el modelo de clasificación de imágenes
 def load_image_class_model():
     model_name = "microsoft/resnet-50"
@@ -51,8 +52,9 @@ st.header("Generación de Imágenes")
 image_prompt = st.text_input("Ingrese el texto para generar la imagen:")
 if st.button("Generar Imagen"):
     if image_prompt:
-        generated_images = image_gen_model(image_prompt)
-        st.image(generated_images[0]["image"], caption="Imagen Generada")
+        generated_images = image_gen_model(image_prompt).images  # Access the images attribute directly
+        if generated_images:
+            st.image(generated_images[0], caption="Imagen Generada")  # Access the first image
 
 # Sección de Clasificación de Imágenes
 st.header("Clasificación de Imágenes")
@@ -63,4 +65,3 @@ if uploaded_file is not None:
     predictions = image_class_model(image)
     for prediction in predictions:
         st.write(f"{prediction['label']}: {prediction['score']:.2f}")
-
